@@ -19,5 +19,6 @@ class MainActivity : AppCompatActivity() {
             android.R.layout.simple_list_item_1,
             mutableListOf()
         )
+        lv.adapter =adapter
     }
 }
