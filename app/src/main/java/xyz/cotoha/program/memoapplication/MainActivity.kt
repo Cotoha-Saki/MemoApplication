@@ -1,9 +1,11 @@
 package xyz.cotoha.program.memoapplication
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
 
@@ -25,10 +27,14 @@ class MainActivity : AppCompatActivity() {
         lv.adapter =adapter
 
         btnAdd.setOnClickListener {
+            val et=EditText(this)
             AlertDialog.Builder(this)
                 .setTitle("メモの作成")
-                .setMessage("ここに入力")
-                .setPositiveButton("追加",null)
+                .setView(et)
+                .setPositiveButton("追加",DialogInterface.OnClickListener { dialogInterface, i ->
+                    val myTodo =et.text.toString()
+                    adapter.add(myTodo)
+                })
                 .setNegativeButton("キャンセル",null)
                 .show()
         }
